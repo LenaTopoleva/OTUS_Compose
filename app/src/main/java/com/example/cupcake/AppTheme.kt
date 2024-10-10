@@ -32,9 +32,11 @@ object AppTheme {
 
     val colors: ColorPalette
         @Composable get() = LocalColor.current
+
     val typography: AppTypography
         @Composable get() = LocalTypography.current
 }
 
 internal val LocalColor = staticCompositionLocalOf { lightColorPalette() }
 internal val LocalTypography = staticCompositionLocalOf { AppTypography() }
+

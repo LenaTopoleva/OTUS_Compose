@@ -3,11 +3,13 @@ import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 
 object AppColors {
+
     val primary = Color(0xFFEC407A)
     val onPrimary = Color(0xFFFFFFFF)
     val secondary = Color(0xFFAB47BC)
     val onPrimaryReverse = Color(0xFF141414)
     val background = Color(0xFFFFFFFF)
+
     val backgroundReverse = Color(0xFF141414)
     val onSurface = Color(0xFFA9A9A9)
     val iconColor = Color(0xFF141414)

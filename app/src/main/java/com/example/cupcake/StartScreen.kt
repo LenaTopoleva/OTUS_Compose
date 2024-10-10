@@ -1,11 +1,14 @@
 package com.example.cupcake
 
+
 import android.annotation.SuppressLint
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,17 +28,16 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.widget.TextViewCompat.AutoSizeTextType
 import androidx.navigation.NavHostController
-import androidx.ui.tooling.preview.Preview
+
 import com.idapgroup.autosizetext.AutoSizeText
+
 
 @Composable
 fun StartScreen(
@@ -44,11 +46,11 @@ fun StartScreen(
     StartContent(navHostController)
 }
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StartContent(navHostController: NavHostController) {
     val image: Painter = painterResource(id = R.drawable.cupcake)
     val scrollState = rememberScrollState()
+
     Scaffold (
         topBar = {
             TopAppBar(
@@ -68,6 +70,7 @@ fun StartContent(navHostController: NavHostController) {
         Surface(
             color = AppTheme.colors.background
         ) {
+
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
