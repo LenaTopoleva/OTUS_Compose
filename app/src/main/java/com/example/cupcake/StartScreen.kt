@@ -8,13 +8,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,8 +31,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.widget.TextViewCompat.AutoSizeTextType
 import androidx.navigation.NavHostController
 import androidx.ui.tooling.preview.Preview
+import com.idapgroup.autosizetext.AutoSizeText
 
 @Composable
 fun StartScreen(
@@ -39,15 +49,32 @@ fun StartScreen(
 fun StartContent(navHostController: NavHostController) {
     val image: Painter = painterResource(id = R.drawable.cupcake)
     val scrollState = rememberScrollState()
-    Scaffold {
-        Surface(color = AppTheme.colors.background)  {
+    Scaffold (
+        topBar = {
+            TopAppBar(
+                backgroundColor = AppTheme.colors.toolbar,
+                title = {
+                    Text(
+                        text = "Cupcake",
+                        style = AppTheme.typography.textMediumBold,
+                        color = AppTheme.colors.toolbarText
+                    )
+                },
+                elevation = 0.dp
+            )
+        }
+        )
+    {
+        Surface(
+            color = AppTheme.colors.background
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                 modifier = Modifier
-                .scrollable(
-                    state = scrollState,
-                    orientation = Orientation.Vertical
-                )
+                modifier = Modifier
+                    .scrollable(
+                        state = scrollState,
+                        orientation = Orientation.Vertical
+                    )
                     .fillMaxSize()
                     .padding(16.dp)
 
@@ -62,16 +89,16 @@ fun StartContent(navHostController: NavHostController) {
                     contentScale = ContentScale.Inside
 
                 )
-                Text(
+                AutoSizeText(
                     text = "Order Cupcakes",
                     modifier = Modifier
-                        .padding(bottom = 16.dp)
-                        ,
-                    style = AppTheme.typography.textMediumBold
+                        .padding(bottom = 16.dp),
+                    maxLines = 1,
+                    minFontSize = 2.sp, fontSize = 34.sp, color = AppTheme.colors.text
                 )
                 Button(
                     onClick = {
-                        navHostController.navigate("flavor")
+                        navHostController.navigate("flavor/1")
                     },
                     modifier = Modifier
                         .padding(top = 8.dp)
@@ -79,12 +106,12 @@ fun StartContent(navHostController: NavHostController) {
                             minWidth = 250.dp
                         )
                 ) {
-                    Text(text = "ONE CUPCAKE")
+                    Text(text = "ONE CUPCAKE", color = AppTheme.colors.onPrimary)
 
                 }
                 Button(
                     onClick = {
-                        navHostController.navigate("flavor")
+                        navHostController.navigate("flavor/6")
                     },
                     modifier = Modifier
                         .padding(top = 8.dp)
@@ -92,11 +119,11 @@ fun StartContent(navHostController: NavHostController) {
                             minWidth = 250.dp
                         )
                 ) {
-                    Text("SIX CUPCAKE")
+                    Text(text = "SIX CUPCAKE", color = AppTheme.colors.onPrimary)
                 }
                 Button(
                     onClick = {
-                        navHostController.navigate("flavor")
+                        navHostController.navigate("flavor/12")
                     },
                     modifier = Modifier
                         .padding(top = 8.dp)
@@ -104,7 +131,7 @@ fun StartContent(navHostController: NavHostController) {
                             minWidth = 250.dp
                         )
                 ) {
-                    Text("TWELVE CUPCAKE")
+                    Text(text = "TWELVE CUPCAKE", color = AppTheme.colors.onPrimary)
                 }
             }
         }

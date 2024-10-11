@@ -1,5 +1,6 @@
 package com.example.cupcake
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -34,7 +35,7 @@ data class AppTypography internal constructor(
     ),
     val h4: TextStyle = TextStyle(
       //  fontFamily = FontFamily(Font(R.font.marvel_regular)),
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 30.sp,
         letterSpacing = 0.sp
     ),
@@ -67,7 +68,7 @@ data class AppTypography internal constructor(
     val body1: TextStyle = TextStyle(
       //  fontFamily = FontFamily(Font(R.font.marvel_regular)),
         fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
+        fontSize = 18.sp,
         letterSpacing = 0.sp,
         lineHeight = 24.sp
     ),
@@ -91,5 +92,5 @@ data class AppTypography internal constructor(
         fontWeight = FontWeight.Bold,
         lineHeight = 20.sp,
        // fontFamily = FontFamily(Font(R.font.marvel_regular))
-    ),
+    )
 )

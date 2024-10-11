@@ -1,6 +1,7 @@
 package com.example.cupcake
 
 import ColorPalette
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -10,18 +11,20 @@ import lightColorPalette
 
 @Composable
 fun CupcakesAppTheme(
-    darkTheme: Boolean,
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ){
     val colors = if (darkTheme) darkColorPalette() else lightColorPalette()
+    val typography = AppTypography()
     CompositionLocalProvider(
         LocalColor provides colors,
+        LocalTypography provides typography
     ) {
         MaterialTheme(
             colors = colors.materialColors,
-        ) {
-            content()
-        }
+            typography = typography.materialTypography,
+            content = content
+        )
     }
 }
 

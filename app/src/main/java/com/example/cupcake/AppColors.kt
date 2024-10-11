@@ -3,12 +3,16 @@ import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 
 object AppColors {
-    val primary = Color(0xFF3366FF)
-    val background = Color(0xFFA28F8F)
+    val primary = Color(0xFFEC407A)
+    val onPrimary = Color(0xFFFFFFFF)
+    val secondary = Color(0xFFAB47BC)
+    val onPrimaryReverse = Color(0xFF141414)
+    val background = Color(0xFFFFFFFF)
     val backgroundReverse = Color(0xFF141414)
+    val onSurface = Color(0xFFA9A9A9)
     val iconColor = Color(0xFF141414)
     val iconColorReverse = Color(0xFFFFFFFF)
-    val toolbar = Color(0xFFE7E7E7)
+    val toolbarText = Color(0xFFE7E7E7)
     val toolbarReverse = Color(0xFF1C1C1C)
     val card = Color(0xFFFFFFFF)
     val cardReverse = Color(0xFF252525)
@@ -27,8 +31,10 @@ object AppColors {
 
 interface ColorPalette {
     val primary: Color
+    val onPrimary: Color
     val background: Color
     val toolbar: Color
+    val toolbarText: Color
     val card: Color
     val text: Color
     val textAccent: Color
@@ -48,8 +54,10 @@ interface ColorPalette {
 
 fun lightColorPalette(): ColorPalette = object : ColorPalette {
     override val primary: Color = AppColors.primary
+    override val onPrimary: Color = AppColors.onPrimary
     override val background: Color = AppColors.background
-    override val toolbar: Color = AppColors.toolbar
+    override val toolbar: Color = AppColors.primary
+    override val toolbarText: Color = AppColors.toolbarText
     override val card: Color = AppColors.card
     override val text: Color = AppColors.text
     override val textAccent: Color = AppColors.textAccent
@@ -67,14 +75,17 @@ fun lightColorPalette(): ColorPalette = object : ColorPalette {
     override val materialColors: Colors = lightColors(
         primary = AppColors.primary,
         surface = AppColors.backgroundReverse,
-        onSurface = AppColors.textReverse
+        onSurface = AppColors.onSurface,
+        secondary = AppColors.secondary
     )
 }
 
 fun darkColorPalette(): ColorPalette = object : ColorPalette {
     override val primary: Color = AppColors.primary
+    override val onPrimary: Color = AppColors.onPrimaryReverse
     override val background: Color = AppColors.backgroundReverse
-    override val toolbar: Color = AppColors.toolbarReverse
+    override val toolbar: Color = AppColors.backgroundReverse
+    override val toolbarText: Color = AppColors.toolbarText
     override val card: Color = AppColors.cardReverse
     override val text: Color = AppColors.textReverse
     override val textAccent: Color = AppColors.textAccent
@@ -92,6 +103,7 @@ fun darkColorPalette(): ColorPalette = object : ColorPalette {
     override val materialColors: Colors = lightColors(
         primary = AppColors.primary,
         surface = AppColors.background,
-        onSurface = AppColors.textReverse
+        onSurface = AppColors.onSurface,
+        secondary = AppColors.secondary
     )
 }

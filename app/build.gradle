@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.example.cupcake"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -66,6 +66,9 @@ dependencies {
     //Jetpack Compose
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
+   // implementation "androidx.compose.material3:material3:$compose_version"
+    implementation 'com.idapgroup:autosizetext-compose:0.1.0'
+
     implementation "androidx.ui:ui-tooling:$ui_tooling_version"
     implementation "androidx.navigation:navigation-compose:$nav_compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity"

@@ -31,7 +31,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
  */
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    //private lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +55,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun compose(){
         setContent {
-            var isLightTheme by remember { mutableStateOf(true) }
             CupcakeApp(
-                onToggleTheme = {
-                    isLightTheme = !isLightTheme
-                },
-                darkTheme = !isLightTheme
             )
         }
     }
