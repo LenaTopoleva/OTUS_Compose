@@ -6,6 +6,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cupcake.model.OrderViewModel
+import com.example.cupcake.screens.FlavorScreen
+import com.example.cupcake.screens.PickupScreen
+import com.example.cupcake.screens.StartScreen
+import com.example.cupcake.screens.SummaryScreen
+import com.example.cupcake.theme.AppTheme
+import com.example.cupcake.theme.CupcakesAppTheme
 
 @Composable
 fun CupcakeApp(viewModel: OrderViewModel, sendOrderCallback: () -> Unit) {

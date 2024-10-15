@@ -1,4 +1,4 @@
-package com.example.cupcake
+package com.example.cupcake.theme
 
 import ColorPalette
 import androidx.compose.foundation.isSystemInDarkTheme

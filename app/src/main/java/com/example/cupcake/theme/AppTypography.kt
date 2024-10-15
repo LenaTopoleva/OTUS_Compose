@@ -1,4 +1,4 @@
-package com.example.cupcake
+package com.example.cupcake.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

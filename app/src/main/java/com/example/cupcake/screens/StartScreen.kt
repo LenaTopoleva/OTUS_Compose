@@ -1,4 +1,4 @@
-package com.example.cupcake
+package com.example.cupcake.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -24,6 +24,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.cupcake.theme.AppTheme
+import com.example.cupcake.FLAVOR_SCREEN
+import com.example.cupcake.R
 import com.example.cupcake.model.OrderViewModel
 import com.idapgroup.autosizetext.AutoSizeText
 

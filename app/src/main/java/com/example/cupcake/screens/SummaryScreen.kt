@@ -1,4 +1,4 @@
-package com.example.cupcake
+package com.example.cupcake.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -26,6 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.cupcake.theme.AppTheme
+import com.example.cupcake.R
+import com.example.cupcake.START_SCREEN
 import com.example.cupcake.model.OrderViewModel
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.cupcake
+package com.example.cupcake.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -33,19 +33,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.cupcake.theme.AppTheme
+import com.example.cupcake.PICKUP_SCREEN
+import com.example.cupcake.R
 import com.example.cupcake.model.OrderViewModel
 
 @Composable
-fun PickupScreen(
+fun FlavorScreen(
     navHostController: NavHostController,
     viewModel: OrderViewModel
 ) {
-    PickupContent(navHostController, viewModel)
+    FlavorContent(navHostController, viewModel)
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun PickupContent(
+fun FlavorContent(
     navHostController: NavHostController,
     viewModel: OrderViewModel
 ) {
@@ -55,7 +58,7 @@ fun PickupContent(
                 backgroundColor = AppTheme.colors.toolbar,
                 title = {
                     Text(
-                        text = stringResource(R.string.choose_pickup_date),
+                        text = stringResource(R.string.choose_flavor),
                         style = AppTheme.typography.textMediumBold,
                         color = AppTheme.colors.toolbarText
                     )
@@ -74,14 +77,19 @@ fun PickupContent(
         }
     ) {
         Surface(modifier = Modifier.fillMaxSize(), color = AppTheme.colors.background) {
-            val radioOptions = viewModel.dateOptions
+            val radioOptions = listOf(
+                stringResource(R.string.vanilla),
+                stringResource(R.string.chocolate),
+                stringResource(R.string.red_velvet),
+                stringResource(R.string.salted_caramel),
+                stringResource(R.string.coffee)
+            )
             var selectedOption by remember { mutableStateOf(radioOptions[0]) }
             val subtotal = viewModel.price.observeAsState()
 
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
                     .padding(16.dp)
             ) {
                 radioOptions.forEach { option ->
@@ -93,13 +101,15 @@ fun PickupContent(
                         RadioButton(
                             selected = (option == selectedOption),
                             onClick = {
-                                viewModel.setDate(option)
+                                viewModel.setFlavor(option)
                                 selectedOption = option
                             }
+
                         )
                         Text(
                             text = option,
                             color = AppTheme.colors.text
+
                         )
                     }
                 }
@@ -123,7 +133,7 @@ fun PickupContent(
                             .padding(end = 16.dp),
                         onClick = {
                             viewModel.resetOrder()
-                            navHostController.navigate(START_SCREEN)
+                            navHostController.navigateUp()
                         },
                         colors = ButtonDefaults.outlinedButtonColors(
                             backgroundColor = AppTheme.colors.background,
@@ -132,10 +142,11 @@ fun PickupContent(
                     ) {
                         Text(stringResource(R.string.cancel).uppercase())
                     }
+
                     Button(
                         modifier = Modifier.weight(1f),
                         onClick = {
-                            navHostController.navigate(SUMMARY_SCREEN)
+                            navHostController.navigate(PICKUP_SCREEN)
                         }) {
                         Text(
                             text = stringResource(R.string.next).uppercase(),
