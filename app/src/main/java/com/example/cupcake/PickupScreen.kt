@@ -36,16 +36,16 @@ import androidx.navigation.NavHostController
 import com.example.cupcake.model.OrderViewModel
 
 @Composable
-fun FlavorScreen(
+fun PickupScreen(
     navHostController: NavHostController,
     viewModel: OrderViewModel
 ) {
-    FlavorContent(navHostController, viewModel)
+    PickupContent(navHostController, viewModel)
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun FlavorContent(
+fun PickupContent(
     navHostController: NavHostController,
     viewModel: OrderViewModel
 ) {
@@ -55,7 +55,7 @@ fun FlavorContent(
                 backgroundColor = AppTheme.colors.toolbar,
                 title = {
                     Text(
-                        text = stringResource(R.string.choose_flavor),
+                        text = stringResource(R.string.choose_pickup_date),
                         style = AppTheme.typography.textMediumBold,
                         color = AppTheme.colors.toolbarText
                     )
@@ -74,19 +74,14 @@ fun FlavorContent(
         }
     ) {
         Surface(modifier = Modifier.fillMaxSize(), color = AppTheme.colors.background) {
-            val radioOptions = listOf(
-                stringResource(R.string.vanilla),
-                stringResource(R.string.chocolate),
-                stringResource(R.string.red_velvet),
-                stringResource(R.string.salted_caramel),
-                stringResource(R.string.coffee)
-            )
+            val radioOptions = viewModel.dateOptions
             var selectedOption by remember { mutableStateOf(radioOptions[0]) }
             val subtotal = viewModel.price.observeAsState()
 
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
+                    .fillMaxSize()
                     .padding(16.dp)
             ) {
                 radioOptions.forEach { option ->
@@ -98,15 +93,13 @@ fun FlavorContent(
                         RadioButton(
                             selected = (option == selectedOption),
                             onClick = {
-                                viewModel.setFlavor(option)
+                                viewModel.setDate(option)
                                 selectedOption = option
                             }
-
                         )
                         Text(
                             text = option,
                             color = AppTheme.colors.text
-
                         )
                     }
                 }
@@ -130,7 +123,7 @@ fun FlavorContent(
                             .padding(end = 16.dp),
                         onClick = {
                             viewModel.resetOrder()
-                            navHostController.navigateUp()
+                            navHostController.navigate(START_SCREEN)
                         },
                         colors = ButtonDefaults.outlinedButtonColors(
                             backgroundColor = AppTheme.colors.background,
@@ -139,11 +132,10 @@ fun FlavorContent(
                     ) {
                         Text(stringResource(R.string.cancel).uppercase())
                     }
-
                     Button(
                         modifier = Modifier.weight(1f),
                         onClick = {
-                            navHostController.navigate(PICKUP_SCREEN)
+                            navHostController.navigate(SUMMARY_SCREEN)
                         }) {
                         Text(
                             text = stringResource(R.string.next).uppercase(),

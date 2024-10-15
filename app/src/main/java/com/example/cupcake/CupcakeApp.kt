@@ -2,38 +2,35 @@ package com.example.cupcake
 
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import com.example.cupcake.model.OrderViewModel
 
 @Composable
-fun CupcakeApp() {
+fun CupcakeApp(viewModel: OrderViewModel, sendOrderCallback: () -> Unit) {
     CupcakesAppTheme() {
         Surface(color = AppTheme.colors.background) {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "start") {
-                    composable("start") {
-                        StartScreen(navHostController = navController)
+                NavHost(navController = navController, startDestination = START_SCREEN) {
+                    composable(START_SCREEN) {
+                        StartScreen(navHostController = navController, viewModel = viewModel)
                     }
-                    composable(
-                        route = "flavor/{quantity}",
-                        arguments = listOf(navArgument("quantity") {type = NavType.IntType})
-                        ) {
-                            backStackEntry ->
-                        backStackEntry.arguments?.getInt("quantity")?.let {
-                            FlavorScreen(navHostController = navController, quantity = it)
+                    composable(FLAVOR_SCREEN) {
+                          FlavorScreen(navHostController = navController, viewModel = viewModel)
                         }
+                    composable(PICKUP_SCREEN) {
+                        PickupScreen(navHostController = navController, viewModel = viewModel)
                     }
-//                    composable("pickup") {
-//                        PickupScreen(navHostController = navController)
-//                    }
-//                    composable("summary") {
-//                        SummaryScreen(navHostController = navController)
-//                    }
-//                }
+                    composable(SUMMARY_SCREEN) {
+                        SummaryScreen(navHostController = navController, viewModel = viewModel, sendOrderCallback)
+                    }
+                }
             }
-        }
     }
 }
+
+const val START_SCREEN = "start"
+const val FLAVOR_SCREEN = "flavor"
+const val PICKUP_SCREEN = "pickup"
+const val SUMMARY_SCREEN = "summary"
