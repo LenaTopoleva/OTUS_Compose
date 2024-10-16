@@ -42,6 +42,7 @@ android {
         kotlinCompilerExtensionVersion compose_version
         kotlinCompilerVersion '1.7.10'
     }
+    namespace 'com.example.cupcake'
 }
 
 dependencies {
@@ -49,7 +50,7 @@ dependencies {
     def nav_version = "2.4.1"
     def lifecycle_version = "2.4.1"
     def ui_tooling_version = "1.0.0-alpha07"
-    def nav_compose_version = "2.6.0-alpha04"
+    def nav_compose_version = "2.8.1"
     def compose_activity = "1.6.1"
     def compose_constraint_layout = "1.1.0-alpha05"
 
