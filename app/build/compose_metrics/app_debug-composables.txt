@@ -1,0 +1,53 @@
+restartable scheme("[androidx.compose.ui.UiComposable]") fun CupcakeApp(
+  unstable viewModel: OrderViewModel
+  stable sendOrderCallback: Function0<Unit>
+)
+restartable skippable scheme("[androidx.compose.ui.UiComposable, [androidx.compose.ui.UiComposable]]") fun OffsetColumn(
+  stable modifier: Modifier? = @static Companion
+  stable content: Function2<Composer, Int, Unit>
+)
+restartable skippable scheme("[androidx.compose.ui.UiComposable]") fun TestScreen()
+restartable scheme("[androidx.compose.ui.UiComposable]") fun FlavorScreen(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun FlavorContent(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun PickupScreen(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun PickupContent(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun StartScreen(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun StartContent(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun SummaryScreen(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+  stable sendOrderCallback: Function0<Unit>
+)
+restartable scheme("[androidx.compose.ui.UiComposable]") fun SummaryContent(
+  unstable navHostController: NavHostController
+  unstable viewModel: OrderViewModel
+  stable sendOrderCallback: Function0<Unit>
+)
+restartable skippable scheme("[0, [0]]") fun CupcakesAppTheme(
+  stable darkTheme: Boolean = @dynamic isSystemInDarkTheme($composer, 0)
+  stable content: Function2<Composer, Int, Unit>
+)
+fun <get-colors>(
+  unused stable <this>: AppTheme
+): ColorPalette
+fun <get-typography>(
+  unused stable <this>: AppTheme
+): AppTypography
