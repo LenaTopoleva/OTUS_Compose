@@ -1,7 +1,17 @@
 package com.example.cupcake
 
+import  androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.EaseIn
+import androidx.compose.animation.core.EaseOut
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -15,24 +25,72 @@ import com.example.cupcake.theme.CupcakesAppTheme
 
 @Composable
 fun CupcakeApp(viewModel: OrderViewModel, sendOrderCallback: () -> Unit) {
+
     CupcakesAppTheme() {
         Surface(color = AppTheme.colors.background) {
-                val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = START_SCREEN) {
-                    composable(START_SCREEN) {
-                        StartScreen(navHostController = navController, viewModel = viewModel)
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = START_SCREEN,
+                enterTransition = { EnterTransition.None },
+                exitTransition = { ExitTransition.None }
+            ) {
+                val enterTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition?) =
+                    {
+                        fadeIn(
+                            animationSpec = tween(
+                                300, easing = LinearEasing
+                            )
+                        ) + slideIntoContainer(
+                            animationSpec = tween(300, easing = EaseIn),
+                            towards = AnimatedContentTransitionScope.SlideDirection.Start
+                        )
                     }
-                    composable(FLAVOR_SCREEN) {
-                          FlavorScreen(navHostController = navController, viewModel = viewModel)
-                        }
-                    composable(PICKUP_SCREEN) {
-                        PickupScreen(navHostController = navController, viewModel = viewModel)
+                val exitTransition: (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition?) =
+                    {
+                        fadeOut(
+                            animationSpec = tween(
+                                300, easing = LinearEasing
+                            )
+                        ) + slideOutOfContainer(
+                            animationSpec = tween(300, easing = EaseOut),
+                            towards = AnimatedContentTransitionScope.SlideDirection.End
+                        )
                     }
-                    composable(SUMMARY_SCREEN) {
-                        SummaryScreen(navHostController = navController, viewModel = viewModel, sendOrderCallback)
-                    }
+
+                composable(START_SCREEN) {
+                    StartScreen(navHostController = navController, viewModel = viewModel)
+                }
+
+                composable(
+                    route = FLAVOR_SCREEN,
+                    enterTransition = enterTransition,
+                    exitTransition = exitTransition
+                ) {
+                    FlavorScreen(navHostController = navController, viewModel = viewModel)
+                }
+
+                composable(
+                    route = PICKUP_SCREEN,
+                    enterTransition = enterTransition,
+                    exitTransition = exitTransition
+                ) {
+                    PickupScreen(navHostController = navController, viewModel = viewModel)
+                }
+
+                composable(
+                    route = SUMMARY_SCREEN,
+                    enterTransition = enterTransition,
+                    exitTransition = exitTransition
+                ) {
+                    SummaryScreen(
+                        navHostController = navController,
+                        viewModel = viewModel,
+                        sendOrderCallback
+                    )
                 }
             }
+        }
     }
 }
 
